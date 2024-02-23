@@ -14,7 +14,17 @@ class HomeView extends StatefulWidget {
 class _HomeViewState extends State<HomeView> {
   @override
   Widget build(BuildContext context) {
-    return const Responsive(
-        desktop: DesktopView(), mobile: MobileView(), tablet: TabletView());
+    final height=MediaQuery.of(context).size.height;
+    return  SingleChildScrollView(
+      child: Column(children: [
+        SizedBox(
+          height: height,
+          child: const Responsive(
+              desktop: DesktopView(),
+              mobile: MobileView(),
+              tablet: TabletView()),
+        ),
+      ]),
+    );
   }
 }

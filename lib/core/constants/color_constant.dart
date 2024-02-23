@@ -6,5 +6,5 @@ class ColorConstant {
   static Color blue = const Color.fromARGB(255, 86, 5, 216);
   static Color white = Colors.white;
   static Color white54 = Colors.white54;
-  static Color black=const Color.fromARGB(255, 46, 46, 46);
+  static Color black = const Color.fromARGB(255, 39, 39, 39);
 }

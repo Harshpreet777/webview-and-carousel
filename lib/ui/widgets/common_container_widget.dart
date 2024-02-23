@@ -11,13 +11,15 @@ class CmmContainer extends StatefulWidget {
       required this.info,
       required this.height,
       required this.widths,
-      required this.fontSize});
+      required this.titleFontSize,
+      required this.infoFontSize});
   String img;
   String title;
   String info;
   double height;
   double widths;
-  double fontSize;
+  double titleFontSize;
+  double infoFontSize;
 
   @override
   State<CmmContainer> createState() => _CmmContainerState();
@@ -26,61 +28,79 @@ class CmmContainer extends StatefulWidget {
 class _CmmContainerState extends State<CmmContainer> {
   @override
   Widget build(BuildContext context) {
+    final screenHeight = MediaQuery.of(context).size.height;
+    final screenWidth = MediaQuery.of(context).size.width;
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 40),
-      child: Column(
-        children: [
-          Align(
-            alignment: Alignment.topLeft,
-            child: SizedBox(
-              height: widget.height,
-              width: widget.widths,
-              child: Image.asset(
-                widget.img,
-                fit: BoxFit.contain,
+      padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.01),
+      child: Container(
+        width: screenWidth * 0.7,
+        padding: EdgeInsets.symmetric(
+            horizontal: screenWidth * 0.025, vertical: screenHeight * 0.01),
+        color: Colors.black,
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Align(
+              alignment: Alignment.topLeft,
+              child: SizedBox(
+                height: widget.height,
+                width: widget.widths,
+                child: Image.asset(
+                  widget.img,
+                  fit: BoxFit.contain,
+                ),
               ),
             ),
-          ),
-          Align(
-            alignment: Alignment.topLeft,
-            child: Text(
-              widget.title,
-              style: TextStyle(
-                  color: ColorConstant.white,
-                  fontSize: widget.fontSize,
-                  fontWeight: FontWeight.w500),
+            SizedBox(
+              height: screenHeight * 0.007,
             ),
-          ),
-          Align(
-            alignment: Alignment.topLeft,
-            child: Text(
-              widget.info,
-              style: TextStyle(
-                  color: ColorConstant.white54,
-                  fontSize: widget.fontSize,
-                  fontWeight: FontWeight.w400),
+            Align(
+              alignment: Alignment.topLeft,
+              child: Text(
+                widget.title,
+                style: TextStyle(
+                    color: ColorConstant.white,
+                    fontSize: widget.titleFontSize,
+                    fontWeight: FontWeight.w500),
+              ),
             ),
-          ),
-          Align(
-            alignment: Alignment.topLeft,
-            child: Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Text(
-                  StringConstants.learnMore,
-                  style: TextStyle(
-                      color: ColorConstant.white,
-                      fontSize: widget.fontSize,
-                      fontWeight: FontWeight.w300),
-                ),
-                Icon(
-                  Icons.arrow_forward,
-                  color: ColorConstant.white,
-                )
-              ],
+            SizedBox(
+              height: screenHeight * 0.01,
             ),
-          )
-        ],
+            Align(
+              alignment: Alignment.topLeft,
+              child: Text(
+                widget.info,
+                style: TextStyle(
+                    color: ColorConstant.white54,
+                    fontSize: widget.infoFontSize,
+                    fontWeight: FontWeight.w400),
+              ),
+            ),
+            SizedBox(
+              height: screenHeight * 0.01,
+            ),
+            Align(
+              alignment: Alignment.topLeft,
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(
+                    StringConstants.learnMore,
+                    style: TextStyle(
+                        color: ColorConstant.white,
+                        fontSize: widget.infoFontSize,
+                        fontWeight: FontWeight.w500),
+                  ),
+                  Icon(
+                    Icons.arrow_forward,
+                    color: ColorConstant.white,
+                  )
+                ],
+              ),
+            )
+          ],
+        ),
       ),
     );
   }
